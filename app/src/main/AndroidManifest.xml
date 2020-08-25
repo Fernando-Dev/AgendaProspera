@@ -28,7 +28,7 @@
         </activity>
         <activity android:name=".ui.agente.cadastrar.AgenteCadastrar">
         </activity>
-        <activity android:name=".model.RepositorioAgente">
+        <activity android:name=".model.Repositorio">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
