@@ -37,6 +37,20 @@ class AgenteDAO(context: Context) {
         repositorio.close()
     }
 
+    fun salvarAgente(){
 
+    }
+    fun editarAgente(id:Int){
+
+    }
+    fun buscarAgente(id:Int){
+
+    }
+    fun listarAgente(){
+
+    }
+    fun excluirAgente(id:Int){
+
+    }
 
 }
