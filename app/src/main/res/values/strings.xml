@@ -7,7 +7,9 @@
     <string name="login_recuperar_senha">Recuperar senha</string>
     <string name="login_criar_perfil">Criar perfil</string>
     <string name="button_login">Entrar</string>
-    <string name="usuario_nome">Nome</string>
+    <string name="campo_nome">Nome</string>
+    <string name="campo_login">Login</string>
+    <string name="campo_senha">Senha</string>
     <string name="btn_salvar">Salvar</string>
     <string name="principal_perfil">Perfil</string>
     <string name="principal_cadastrar_cliente">Cadastrar</string>

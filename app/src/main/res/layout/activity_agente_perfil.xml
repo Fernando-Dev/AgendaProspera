@@ -1,10 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
+        android:background="@color/colorBackground"
         android:layout_height="match_parent"
         tools:context=".ui.agente.perfil.AgentePerfil">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="vertical"
+                  android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+                                           android:layout_marginTop="50dp"
+                                           android:layout_marginRight="20dp"
+                                           android:layout_marginLeft="20dp"
+                                           android:layout_gravity="center_horizontal"
+                                           android:padding="@dimen/padding_layout_padrao"
+                                           app:cardElevation="5dp"
+                                           app:cardCornerRadius="15dp"
+                                           android:layout_height="wrap_content">
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:orientation="vertical"
+                          android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputLayout
+                        android:hint="@string/campo_nome"
+                        android:padding="@dimen/padding_layout_padrao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_cad_agente_nome"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                        android:hint="@string/campo_login"
+                        android:padding="@dimen/padding_layout_padrao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_cad_agente_login"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                        android:hint="@string/campo_senha"
+                        android:padding="@dimen/padding_layout_padrao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_cad_agente_senha"
+                            android:inputType="textPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:orientation="vertical"
+                      android:layout_height="wrap_content">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_marginTop="50dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="right"
+                    android:src="@drawable/ic_mode_edit"
+                    android:background="@color/colorPrimary"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</ScrollView>
