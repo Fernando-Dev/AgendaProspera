@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:background="@color/colorBackground"
+        android:layout_height="match_parent"
+        android:padding="2dp"
+        tools:context=".ui.SplashScreen">
+
+
+    <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:srcCompat="@drawable/spring_notebook"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+    <TextView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:id="@+id/imageView"
+            android:text="@string/app_name"
+            android:gravity="center_horizontal|center_vertical"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+
+
+
+</RelativeLayout>

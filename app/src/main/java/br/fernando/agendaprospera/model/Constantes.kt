@@ -10,7 +10,7 @@ class Constantes {
          */
 
         const val DB_NOME = "agenda_prospera"
-        const val DB_VERSAO = 1
+        const val DB_VERSAO = 2
         /**
          * colunas da tabela agente
          */
@@ -41,13 +41,13 @@ class Constantes {
         const val COLUNA_CHAVE_ESTRANGEIRA_AGENTE = "agente_id"
 
         /**
-         * colunas da tabela quilometragem
+         * colunas da tabela agenda
          *
          */
 
-        const val TABELA_QUILOMETRAGEM = "quilometragem"
-        const val COLUNA_QUILOMETRAGEM_ID = "id"
-        const val COLUNA_QUILOMETRAGEM_DISTANCIA = "distancia"
+        const val TABELA_AGENDA = "agenda"
+        const val COLUNA_AGENDA_ID = "id"
+        const val COLUNA_AGENDA_VALOR_ABASTECIDO = "valor_abastecido"
         const val COLUNA_CHAVE_ESTRANGEIRA_CLIENTE = "cliente_id"
         const val COLUNA_CHAVE_ESTRANGEIRA_CLIENTE_AGENTE="cliente_agente_id"
 

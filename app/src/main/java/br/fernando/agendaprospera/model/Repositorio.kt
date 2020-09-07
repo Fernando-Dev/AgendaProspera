@@ -9,9 +9,10 @@ import br.fernando.agendaprospera.model.Constantes.Companion.COLUNA_AGENTE_NOME
 import br.fernando.agendaprospera.model.Constantes.Companion.COLUNA_AGENTE_SENHA
 import br.fernando.agendaprospera.model.Constantes.Companion.DB_NOME
 import br.fernando.agendaprospera.model.Constantes.Companion.DB_VERSAO
+import br.fernando.agendaprospera.model.Constantes.Companion.TABELA_AGENDA
 import br.fernando.agendaprospera.model.Constantes.Companion.TABELA_AGENTE
 import br.fernando.agendaprospera.model.Constantes.Companion.TABELA_CLIENTE
-import br.fernando.agendaprospera.model.Constantes.Companion.TABELA_QUILOMETRAGEM
+
 
 
 class Repositorio(context: Context) :
@@ -57,18 +58,18 @@ class Repositorio(context: Context) :
         db?.execSQL(CREATE_TABLE_CLIENTE)
 
         /**
-         * CRIANDO A TABELA QUILOMETRAGEM
+         * CRIANDO A TABELA AGENDA
          */
 
-        val CREATE_TABLE_QUILOMETRAGEM = "CREATE TABLE" +
-                "${Constantes.TABELA_QUILOMETRAGEM}(${Constantes.COLUNA_QUILOMETRAGEM_ID} INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-                "${Constantes.COLUNA_QUILOMETRAGEM_DISTANCIA} INTEGER NOT NULL," +
+        val CREATE_TABLE_AGENDA = "CREATE TABLE" +
+                "${Constantes.TABELA_AGENDA}(${Constantes.COLUNA_AGENDA_ID} INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+                "${Constantes.COLUNA_AGENDA_VALOR_ABASTECIDO} REAL NOT NULL," +
                 "${Constantes.COLUNA_CHAVE_ESTRANGEIRA_CLIENTE} INTEGER NOT NULL," +
                 "${Constantes.COLUNA_CHAVE_ESTRANGEIRA_CLIENTE_AGENTE} INTEGER NOT NULL);"
         /**
          * executa script
          */
-        db?.execSQL(CREATE_TABLE_QUILOMETRAGEM)
+        db?.execSQL(CREATE_TABLE_AGENDA)
 
     }
 
@@ -78,7 +79,7 @@ class Repositorio(context: Context) :
          */
         val DROP_TABLE_AGENTE = "DROP TABLE IF EXISTS $TABELA_AGENTE"
         val DROP_TABLE_CLIENTE = "DROP TABLE IF EXISTS $TABELA_CLIENTE"
-        val DROP_TABLE_QUILOMETRAGEM = "DROP TABLE IF EXISTS $TABELA_QUILOMETRAGEM"
+        val DROP_TABLE_AGENDA = "DROP TABLE IF EXISTS $TABELA_AGENDA"
 
         /**
          * EXECUTA SCRIPT
@@ -86,7 +87,7 @@ class Repositorio(context: Context) :
 
         db?.execSQL(DROP_TABLE_AGENTE)
         db?.execSQL(DROP_TABLE_CLIENTE)
-        db?.execSQL(DROP_TABLE_QUILOMETRAGEM)
+        db?.execSQL(DROP_TABLE_AGENDA)
 
         /**
          * executa metodo oncreate para criar um banco novo

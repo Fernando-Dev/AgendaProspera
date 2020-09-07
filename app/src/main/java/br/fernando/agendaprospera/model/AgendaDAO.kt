@@ -3,14 +3,14 @@ package br.fernando.agendaprospera.model
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import br.fernando.agendaprospera.model.Constantes.Companion.COLUNA_AGENDA_ID
+import br.fernando.agendaprospera.model.Constantes.Companion.COLUNA_AGENDA_VALOR_ABASTECIDO
 import br.fernando.agendaprospera.model.Constantes.Companion.COLUNA_CHAVE_ESTRANGEIRA_CLIENTE
 import br.fernando.agendaprospera.model.Constantes.Companion.COLUNA_CHAVE_ESTRANGEIRA_CLIENTE_AGENTE
-import br.fernando.agendaprospera.model.Constantes.Companion.COLUNA_QUILOMETRAGEM_DISTANCIA
-import br.fernando.agendaprospera.model.Constantes.Companion.COLUNA_QUILOMETRAGEM_ID
-import br.fernando.agendaprospera.model.Constantes.Companion.TABELA_QUILOMETRAGEM
-import br.fernando.agendaprospera.model.dominio.Quilometragem
+import br.fernando.agendaprospera.model.Constantes.Companion.TABELA_AGENDA
+import br.fernando.agendaprospera.model.dominio.Agenda
 
-class QuilometragemDAO(context: Context) {
+class AgendaDAO(context: Context) {
 
     val repositorio = Repositorio(context)
     var db: SQLiteDatabase = TODO()
@@ -44,97 +44,97 @@ class QuilometragemDAO(context: Context) {
         repositorio.close()
     }
 
-    fun salvarQuilometragem(quilometragem: Quilometragem): Long {
+    fun salvarAgenda(agenda: Agenda): Long {
 //        ABRINDO BANCO DE DADOS
         val db = abrirBanco()
 //        ENVIANDO DADOS PARA O BANCO
         val values = ContentValues().apply {
-            put(COLUNA_QUILOMETRAGEM_DISTANCIA, quilometragem.distancia)
-            put(COLUNA_CHAVE_ESTRANGEIRA_CLIENTE, quilometragem.clienteId)
-            put(COLUNA_CHAVE_ESTRANGEIRA_CLIENTE_AGENTE, quilometragem.clienteAgenteId)
+            put(COLUNA_AGENDA_VALOR_ABASTECIDO, agenda.valorAbastecido)
+            put(COLUNA_CHAVE_ESTRANGEIRA_CLIENTE, agenda.clienteId)
+            put(COLUNA_CHAVE_ESTRANGEIRA_CLIENTE_AGENTE, agenda.clienteAgenteId)
         }
 //        FANEDO O INSERT NO BANCO DE DADOS
-        return db.insert(TABELA_QUILOMETRAGEM, null, values)
+        return db.insert(TABELA_AGENDA, null, values)
     }
 
-    fun editarQuilometragem(quilometragem: Quilometragem): Long {
+    fun editarAgenda(agenda: Agenda): Long {
 //        abrir banco de dados
         val db = abrirBanco()
 //        preparando os dados par atualiacao no banco de dados
         val values = ContentValues().apply {
-            put(COLUNA_QUILOMETRAGEM_ID, quilometragem.id)
-            put(COLUNA_QUILOMETRAGEM_DISTANCIA, quilometragem.distancia)
-            put(COLUNA_CHAVE_ESTRANGEIRA_CLIENTE, quilometragem.clienteId)
-            put(COLUNA_CHAVE_ESTRANGEIRA_CLIENTE_AGENTE, quilometragem.clienteAgenteId)
+            put(COLUNA_AGENDA_ID, agenda.id)
+            put(COLUNA_AGENDA_VALOR_ABASTECIDO, agenda.valorAbastecido)
+            put(COLUNA_CHAVE_ESTRANGEIRA_CLIENTE, agenda.clienteId)
+            put(COLUNA_CHAVE_ESTRANGEIRA_CLIENTE_AGENTE, agenda.clienteAgenteId)
         }
 //        argumento para comparar identificador
-        val selecao = COLUNA_QUILOMETRAGEM_ID + " = ?"
+        val selecao = COLUNA_AGENDA_ID + " = ?"
 //        argumento para que recebe o identificador do obejto
-        val selecaoArgumento = arrayOf(quilometragem.id.toString())
+        val selecaoArgumento = arrayOf(agenda.id.toString())
 //        faendo a atualiacao dos dados no banco de dados segundo os argumentos
-        return db.update(TABELA_QUILOMETRAGEM, values, selecao, selecaoArgumento).toLong()
+        return db.update(TABELA_AGENDA, values, selecao, selecaoArgumento).toLong()
 
     }
 
-    fun buscarQuilometragem(id: Int): Quilometragem {
+    fun buscarAgenda(id: Int): Agenda {
         //        GERANDO OBJETO AGENTE
-        val quilometragem = Quilometragem()
+        val agenda = Agenda()
 //        lendo O BANCO DE DADOS
         val db = lerBanco()
 //        SCRIPT PARA REALIAR A CONSULTA NO BANCO DE DADOS
         val selectQuery =
-            "SELECT * FROM $TABELA_QUILOMETRAGEM WHERE $COLUNA_QUILOMETRAGEM_ID = ? $id"
+            "SELECT * FROM $TABELA_AGENDA WHERE $COLUNA_AGENDA_ID = ? $id"
 //        CURSOR PARA BUSCAR O OBJETO NO BANCO DE DADOS
         val cursor = db.rawQuery(selectQuery, null)
         cursor?.moveToFirst()
-        quilometragem.id = cursor.getInt(cursor.getColumnIndex(COLUNA_QUILOMETRAGEM_ID))
-        quilometragem.distancia = cursor.getInt(cursor.getColumnIndex(COLUNA_QUILOMETRAGEM_DISTANCIA))
-        quilometragem.clienteId = cursor.getInt(cursor.getColumnIndex(COLUNA_CHAVE_ESTRANGEIRA_CLIENTE))
-        quilometragem.clienteAgenteId = cursor.getInt(cursor.getColumnIndex(COLUNA_CHAVE_ESTRANGEIRA_CLIENTE_AGENTE))
+        agenda.id = cursor.getInt(cursor.getColumnIndex(COLUNA_AGENDA_ID))
+        agenda.valorAbastecido = cursor.getDouble(cursor.getColumnIndex(COLUNA_AGENDA_VALOR_ABASTECIDO))
+        agenda.clienteId = cursor.getInt(cursor.getColumnIndex(COLUNA_CHAVE_ESTRANGEIRA_CLIENTE))
+        agenda.clienteAgenteId = cursor.getInt(cursor.getColumnIndex(COLUNA_CHAVE_ESTRANGEIRA_CLIENTE_AGENTE))
         cursor.close()
-        return quilometragem
+        return agenda
 
     }
 
-    fun listarQuilometragem(): ArrayList<Quilometragem> {
+    fun listarAgenda(): ArrayList<Agenda> {
 //        criando colecao do tipo do objeto
-        val quilometragemLista = ArrayList<Quilometragem>()
+        val agendaLista = ArrayList<Agenda>()
 //        lendo o banco de dados
         val db = lerBanco()
 //        argumento para consulta
-        val selecaoArgumento = "SELECT * FROM $TABELA_QUILOMETRAGEM"
+        val selecaoArgumento = "SELECT * FROM $TABELA_AGENDA"
 //        percorrendo banco de dados com o cursor
         val cursor = db.rawQuery(selecaoArgumento, null)
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 do {
-                    val quilometragem = Quilometragem()
+                    val agenda = Agenda()
 //                    coletando dados
-                    quilometragem.id = cursor.getInt(cursor.getColumnIndex(COLUNA_QUILOMETRAGEM_ID))
-                    quilometragem.distancia = cursor.getInt(cursor.getColumnIndex(COLUNA_QUILOMETRAGEM_DISTANCIA))
-                    quilometragem.clienteId = cursor.getInt(cursor.getColumnIndex(COLUNA_CHAVE_ESTRANGEIRA_CLIENTE))
-                    quilometragem.clienteAgenteId =
+                    agenda.id = cursor.getInt(cursor.getColumnIndex(COLUNA_AGENDA_ID))
+                    agenda.valorAbastecido = cursor.getDouble(cursor.getColumnIndex(COLUNA_AGENDA_VALOR_ABASTECIDO))
+                    agenda.clienteId = cursor.getInt(cursor.getColumnIndex(COLUNA_CHAVE_ESTRANGEIRA_CLIENTE))
+                    agenda.clienteAgenteId =
                         cursor.getInt(cursor.getColumnIndex(COLUNA_CHAVE_ESTRANGEIRA_CLIENTE_AGENTE))
 //                    adicionando dados na colecao
-                    quilometragemLista.add(quilometragem)
+                    agendaLista.add(agenda)
                 } while (cursor.moveToNext())
             }
         }
 //        fecha cursor
         cursor.close()
 //        retorna a lista de dados
-        return quilometragemLista
+        return agendaLista
     }
 
-    fun excluirQuilometragem(id: Int): Boolean {
+    fun excluirAgenda(id: Int): Boolean {
 //        abrindo o abrindo o banco de dados
         val db = abrirBanco()
 //        argumento para comparacao de identificador
-        val selecaoClausula = "$COLUNA_QUILOMETRAGEM_ID = ? $id"
+        val selecaoClausula = "$COLUNA_AGENDA_ID = ? $id"
 //        argumento passado por parametro
         val argumento = arrayOf(id.toString())
 //        removendo objeto do banco de dados
-        val removido: Int = db.delete(TABELA_QUILOMETRAGEM, selecaoClausula, argumento)
+        val removido: Int = db.delete(TABELA_AGENDA, selecaoClausula, argumento)
         return removido > 0
     }
 

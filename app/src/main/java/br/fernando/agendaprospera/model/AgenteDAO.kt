@@ -137,4 +137,12 @@ class AgenteDAO(context: Context) {
         return removido > 0
     }
 
+    fun iniciarSessao(login:String,senha:String):Boolean{
+        val db = lerBanco()
+
+//        falta terminar metodo
+        return true
+
+    }
+
 }

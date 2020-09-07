@@ -16,5 +16,10 @@
     <string name="principal_cliente">Cliente</string>
     <string name="principal_listar">Listar</string>
     <string name="principal_quilometragem">Viagens</string>
+    <string name="agenda_listar_toolbar">Listar Agenda</string>
+    <string name="cliente_listar_toolbar">Listar Cliente</string>
+    <string name="cliente_cadastrar_toolbar">Cadastrar Cliente</string>
+    <string name="perfil_agente_toolbar">Perfil</string>
+    <string name="agente_cadastrar_toolbar">Cadastrar Agente</string>
 
 </resources>
